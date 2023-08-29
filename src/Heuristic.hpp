@@ -3,16 +3,17 @@
 #ifndef HEURISTIC_H
 #define HEURISTIC_H
 
+#include <string>
+#include "problem/Problem.hpp"
+
 class Heuristic {
-    private:
-        int m_seed;
     public:
-        Heuristic(int givenSeed) : m_seed(givenSeed) {};
+        Heuristic() {};
         ~Heuristic() {};
 
     protected:
-        virtual void useHeuristic();
-        virtual void getName();
+        virtual void useHeuristic(Problem givenProblem);
+        virtual std::string getName();
     
 };
 

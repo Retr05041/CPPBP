@@ -12,28 +12,33 @@
 
 class Problem {
     public:
-        Problem(std::string file);
+        Problem(std::string file, int seed);
         ~Problem();
 
         // Read file
         void readFile();
 
+        // Setup problem
+        void setupProblem();
+
         // Getters
         int getNumOfSubsets();
         int getMaxNum();
         std::vector<int> getSubset(int index);
-        std::set<int> getSolution();
+        std::vector<int> getSolution();
         int getSolutionBit(int index);
         int getObjectiveValue();
         int getBestSubsetIndex();
 
         // Methods
         void bitFlip(int index);
+        void updateBin(int subsetIndex, bool remove);
+        bool checkElemCoverage(int elem, int ignoredSubset);
         void printSolution();
         void printObjectiveValue();
-        void updateBin();
-        bool checkElemCoverage(int elem, int ignoredSubset);
         bool acceptanceCheck();
+        void shuffleGivenArray(std::vector<int> &givenArray);
+
 
     private:
         // File name & File
@@ -41,12 +46,14 @@ class Problem {
         // Solution vector & Objective function
         std::vector<int> m_solution;
         int m_objectiveValue = 0;
-        // First & Second line vector
-        std::set<int> m_firstLine;
+        // First line vector
+        std::vector<int> m_firstLine;
         // Subset vector
         std::vector<std::vector<int>> m_subsets;
         // Bin
-        std::set<int> m_bin;
+        std::vector<int> m_bin;
+        // Seed
+        int m_seed;
     
 };
 
